@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>FAQ - Motion Maestro</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #83d8f7;
+            padding: 20px; /* Increase height of the navbar by adding more padding */
+            position: fixed; /* Fix the navbar at the top */
+            top: 0;
+            left: 0; /* Ensure it spans from the leftmost edge */
+            right: 0; /* Ensure it spans to the rightmost edge */
+            width: 100%; /* Full width of the viewport */
+            z-index: 1000; /* Ensure it's on top of other elements */
+            box-sizing: border-box; /* Include padding in the element's width and height */
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            color: white;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 10px; /* Adjusted to move buttons slightly to the left */
+        }
+
+        .navbar ul li:first-child {
+            margin-left: 0; /* Ensures no extra space for the first element */
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            display: block;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #45c6f5;
+            border-radius: 4px;
+        }
+
+        /* Add padding to the top of the page content to prevent it from being hidden behind the fixed navbar */
+        body {
+            padding-top: 80px; /* Adjust this value based on the increased navbar height */
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("{{ url_for('static', filename='background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3; /* Decrease this value for more transparency */
+            z-index: -1; /* Place behind the content */
+            position: fixed;
+        }
+
+        /* Styling for FAQ */
+        .faq-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            border: 1px solid #83d8f7;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            background-color: #f4faff;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease-out;
+            padding: 0;
+            font-size: 16px;
+            border-top: 1px solid #83d8f7;
+            padding-top: 10px;
+            margin-top: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .faq-answer.open {
+            max-height: 400px; /* Adjust max-height according to your content */
+            padding: 10px 0;
+        }
+
+        /* Optional styling for the image */
+        .faq-answer img {
+            max-width: 466px;
+            height: 350px;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="title">Motion Maestro</div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+        </ul>
+    </div>
+
+    <h1 style="text-align: center;">Frequently Asked Questions</h1>
+
+    <div class="faq-container">
+        <!-- FAQ Question 1 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">Q. What is Motion Maestro?</div>
+            <div class="faq-answer">
+                Ans. Motion Maestro is an application designed to detect American Sign Language (ASL) gestures through a webcam and convert them into text on the screen.
+            </div>
+        </div>
+
+        <!-- FAQ Question 2 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">Q. How does the ASL detection work?</div>
+            <div class="faq-answer">
+                Ans. The system uses a CNN-based machine learning algorithm to recognize hand gestures captured through a webcam. The model interprets these gestures as ASL characters and outputs them as text.
+            </div>
+        </div>
+
+        <!-- FAQ Question 3 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">Q. Which ASL symbols are supported?</div>
+            <div class="faq-answer">
+                Ans. Our model currently supports the full ASL alphabet (A-Z), numbers (0-9), Space, and a Delete symbol to delete the last entered character.
+            </div>
+        </div>
+
+        <!-- New FAQ Question 4 with Image -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">Q. What are the different hand gestures that Motion Maestro uses?</div>
+            <div class="faq-answer">
+                Ans. The below image shows the Hand Gestures used in Motion Maestro.
+                <img src="{{ url_for('static', filename='asl_hand_gestures.png') }}" alt="ASL Hand Gestures">
+            </div>
+        </div>
+
+        <!-- FAQ Question 5 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">Q. What equipment do I need to use Motion Maestro?</div>
+            <div class="faq-answer">
+                Ans. You only need a computer with a webcam, a stable internet connection, and a modern web browser to use Motion Maestro.
+            </div>
+        </div>
+
+        <!-- FAQ Question 6 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">Q. How accurate is the ASL gesture detection?</div>
+            <div class="faq-answer">
+                Ans. Accuracy depends on factors such as lighting, camera quality, and the clarity of hand gestures. The system has been trained on a variety of samples to ensure reliable detection in most conditions.
+            </div>
+        </div>
+
+        <!-- FAQ Question 7 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">Q. What should I do if the system does not detect my gesture correctly?</div>
+            <div class="faq-answer">
+                Ans. Ensure that your hand is clearly visible, well-lit, and positioned correctly in front of the camera. If issues persist, try adjusting the lighting or camera angle.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAnswer(questionElement) {
+            const allAnswers = document.querySelectorAll('.faq-answer');
+            allAnswers.forEach(answer => {
+                if (answer !== questionElement.nextElementSibling) {
+                    answer.classList.remove('open');
+                }
+            });
+
+            const answerElement = questionElement.nextElementSibling;
+            answerElement.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

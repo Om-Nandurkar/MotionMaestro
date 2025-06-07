@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>About Us - Motion Maestro</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #83d8f7;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            color: white;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 10px;
+        }
+
+        .navbar ul li:first-child {
+            margin-left: 0;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            display: block;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #45c6f5;
+            border-radius: 4px;
+        }
+
+        body {
+            padding-top: 80px;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("{{ url_for('static', filename='background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3; /* Decrease this value for more transparency */
+            z-index: -1; /* Place behind the content */
+            position: fixed;
+        }
+
+        h1 {
+            color: #45c6f5;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f1f9ff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .about-section .team-list {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .about-section .team-list li {
+            list-style-type: none;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="title">Motion Maestro</div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+        </ul>
+    </div>
+
+    <div class="about-section">
+        <h1>About Us</h1>
+
+        <h2>Our Mission</h2>
+        <p>At Motion Maestro, we aim to empower individuals by creating an accessible and inclusive environment for Deaf and Hard-of-Hearing people. Our ASL detection project seeks to break down communication barriers through innovative technology that translates American Sign Language into readable text in real-time.</p>
+
+        <h2>Our Technology</h2>
+        <p>We leverage Convolutional Neural Networks (CNN) to accurately detect and interpret ASL gestures. By using hand-tracking modules and real-time prediction, our system ensures a smooth and reliable interaction for users.</p>
+
+        <h2>Why It Matters</h2>
+        <p>There are millions of people worldwide who rely on sign language to communicate. By developing this tool, we hope to make communication between signers and non-signers easier, whether in educational settings, workplaces, or everyday situations.</p>
+
+        <h2>Our Team</h2>
+        <ul class="team-list">
+            <li>Om Nandurkar</li>
+            <li>Kautuk Salvi</li>
+            <li>Siddhant Mahajan</li>
+            <li>Ayush Nagarkoti</li>
+        </ul>
+    </div>
+</body>
+</html>
