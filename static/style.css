@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#camera-input img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+
+#output-area {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+}
