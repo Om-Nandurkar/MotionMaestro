@@ -1,4 +1,4 @@
-cvzone==1.6.1
+opencv
 mediapipe==0.10.14
 tensorflow==2.12.1
 flask==3.0.3
